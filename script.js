@@ -15,12 +15,13 @@ searchBtn.addEventListener('click', () =>{
     textValue = textBox.value.toLowerCase();
     countryValue = countrySelect.value;
 
-    const genderizeObj = JSON.parse(logGenderizeData());
-    const agifyObj = JSON.parse(logAgifyData());
-    const nationalizeObj = JSON.parse(logNationalizeData());
+    const genderizeObj = JSON.parse(logGenderizeData(textValue, countryValue));
+    const agifyObj = JSON.parse(logAgifyData(textValue, countryValue));
+    const nationalizeObj = JSON.parse(logNationalizeData(textValue));
 
     nameParagraph.textContent = textValue;
     countryParagraph.textContent = regionNames.of(countryValue);
     originParagraph.textContent = regionNames(nationalizeObj[0].country_id);
-    nameGenderParagraph.textContent = agifyObj.age;
+    ageParagraph.textContent = agifyObj.age;
+    originParagraph.textContent = nationalizeObj.
 });
