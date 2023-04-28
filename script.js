@@ -23,5 +23,5 @@ searchBtn.addEventListener('click', () =>{
     countryParagraph.textContent = regionNames.of(countryValue);
     originParagraph.textContent = regionNames(nationalizeObj[0].country_id);
     ageParagraph.textContent = agifyObj.age;
-    originParagraph.textContent = nationalizeObj.
+    nameGenderParagraph.textContent = genderizeObj.gender + ' %' + (genderizeObj.probability * 100);
 });
