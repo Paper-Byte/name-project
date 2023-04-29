@@ -4,11 +4,13 @@ async function logGenderizeData(name, country){
     return genderizeJson;
 }
 
+
 async function logAgifyData(name, country){
     const agifyResponse = await fetch(`https://api.agify.io?name=${name}&country_id=${country}`);
     const agifyJson = await agifyResponse.json();
     return agifyJson;
 }
+
 
 async function logNationalizeData(name){
     const nationalizeResponse = await fetch(`https://api.nationalize.io?name=${name}`);
