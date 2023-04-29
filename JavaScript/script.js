@@ -23,21 +23,7 @@ searchBtn.addEventListener('click', async () =>{
     const nationalizeObj = await logNationalizeData(textValue)
     const agifyObj = await logAgifyData(textValue, countryValue)
 
-    // nameParagraph.textContent = textValue;
-    // countryParagraph.textContent = regionCodeToCountry(countryValue);
-    // originParagraph.textContent = regionCodeToCountry((nationalizeObj['country'][0].country_id));
-
-    // if(agifyObj.age === null){
-    //     ageParagraph.textContent = 'Not Enough Data';
-    // }else{
-    //     ageParagraph.textContent = agifyObj.age;
-    // }
-
-    // if(genderizeObj.gender === null){
-    //     nameGenderParagraph.textContent = 'Not Enough Data'
-    // }else{
-    //     nameGenderParagraph.textContent = genderizeObj.gender + ' %' + (genderizeObj.probability * 100);
-    // }
+    nameParagraph.textContent = nameFormatting(textValue);
     countryParagraph.textContent = regionCodeToCountry(countryValue);
     originParagraph.textContent = regionCodeToCountry((nationalizeObj['country'][0].country_id));
     ageParagraph.textContent = agifyClean(agifyObj.age);
