@@ -9,18 +9,33 @@ const nameGenderParagraph = document.getElementById('nameGenderOdds');
 
 let textValue = '';
 let countryValue = '';
-let regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
+
+const regionCodeToCountry = (string) =>{
+    const regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
+    const country = regionNames.of(string);
+    return country;
+}
 
 searchBtn.addEventListener('click', async () =>{
     textValue = textBox.value.toLowerCase();
     countryValue = countrySelect.value;
     const genderizeObj = await logGenderizeData(textValue, countryValue)
-    const agifyObj = await logAgifyData(textValue, countryValue)
     const nationalizeObj = await logNationalizeData(textValue)
+    const agifyObj = await logAgifyData(textValue, countryValue)
 
     nameParagraph.textContent = textValue;
-    countryParagraph.textContent = regionNames.of(countryValue);
-    originParagraph.textContent = regionNames.of(nationalizeObj['country'][0].country_id);
-    ageParagraph.textContent = agifyObj.age; 
-    nameGenderParagraph.textContent = genderizeObj.gender + ' %' + (genderizeObj.probability * 100);
+    countryParagraph.textContent = regionCodeToCountry(countryValue);
+    originParagraph.textContent = regionCodeToCountry((nationalizeObj['country'][0].country_id));
+
+    if(agifyObj.age === null){
+        ageParagraph.textContent = 'Not Enough Data';
+    }else{
+        ageParagraph.textContent = agifyObj.age;
+    }
+
+    if(genderizeObj.gender === null){
+        nameGenderParagraph.textContent = 'Not Enough Data'
+    }else{
+        nameGenderParagraph.textContent = genderizeObj.gender + ' %' + (genderizeObj.probability * 100);
+    }
 });
