@@ -3,6 +3,12 @@ html{
     background-size: cover;
     background-attachment: fixed;
 }
+body{
+    height: 100% !important;
+    overscroll-behavior: none;
+    padding: 0px;
+    margin: 0px;
+}
 #header{
     background-color: rgb(130, 130, 137, .8);
     border-radius: 25px 25px 25px 25px;
@@ -12,6 +18,10 @@ html{
 h1{
     text-align: center;
     font-size: 80px;
+}
+
+label{
+    display: inline-block
 }
 
 #userInputContainer{
@@ -34,16 +44,26 @@ h1{
 
 #returnNameInfoContainer{
     background-color: rgb(130, 130, 137, .8);
-    display: flex;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+    display: flex;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+    text-align: center;
 }
 
 #returnNameInfo{
-    width: 200px;
-    text-align: justify;
-    margin-left: 40%;
-    margin-top: 5%;
+    text-align: center;
+    margin-top: 1%;
     font-size: 30px;
+    width: 33%;
 }
+
+.valueReturns{
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+#spacer{
+    width: 33%;
+    display: flex;
+}  
