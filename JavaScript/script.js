@@ -1,6 +1,6 @@
 const textBox = document.getElementById('nameSearchBox');
 const searchBtn = document.getElementById('nameSearchBtn');
-const countrySelect = document.getElementById('countrySelect');
+const countrySelect = document.getElementById('countryList');
 const nameParagraph = document.getElementById('nameValue');
 const countryParagraph = document.getElementById('nameCountry');
 const ageParagraph = document.getElementById('nameAge');
@@ -9,23 +9,18 @@ const nameGenderParagraph = document.getElementById('nameGenderOdds');
 
 let textValue = '';
 let countryValue = '';
-
-// const regionCodeToCountry = (string) =>{
-//     const regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
-//     const country = regionNames.of(string);
-//     return country;
-// }
+// countrySelect.addEventListener('change', function() {
+//   countryValue = countrySelect.value;
+// });
 
 searchBtn.addEventListener('click', async () =>{
     textValue = textBox.value.toLowerCase();
-    countryValue = countrySelect.value;
-    const genderizeObj = await logGenderizeData(textValue, countryValue)
-    const nationalizeObj = await logNationalizeData(textValue)
-    const agifyObj = await logAgifyData(textValue, countryValue)
+    countryValue = document.getElementById('countryList').textContent;
+    console.log(countryValue);
 
-    nameParagraph.textContent = nameFormatting(textValue);
-    countryParagraph.textContent = regionCodeToCountry(countryValue);
-    originParagraph.textContent = regionCodeToCountry((nationalizeObj['country'][0].country_id));
-    ageParagraph.textContent = agifyClean(agifyObj.age);
-    nameGenderParagraph.textContent = genderizeClean(genderizeObj.gender, genderizeObj.probability);
+    // nameParagraph.textContent = nameFormatting(textValue);
+    // countryParagraph.textContent = countryValue;
+    // originParagraph.textContent = regionCodeToCountry((nationalizeObj['country'][0].country_id));
+    // ageParagraph.textContent = agifyClean(agifyObj.age);
+    // nameGenderParagraph.textContent = genderizeClean(genderizeObj.gender, genderizeObj.probability);
 });
