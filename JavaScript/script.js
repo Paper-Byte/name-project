@@ -10,12 +10,6 @@ const nameGenderParagraph = document.getElementById('nameGenderOdds');
 let textValue = '';
 let countryValue = '';
 
-// const regionCodeToCountry = (string) =>{
-//     const regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
-//     const country = regionNames.of(string);
-//     return country;
-// }
-
 searchBtn.addEventListener('click', async () =>{
     textValue = textBox.value.toLowerCase();
     countryValue = countrySelect.value;
