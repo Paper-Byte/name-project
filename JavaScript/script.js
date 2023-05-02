@@ -1,25 +1,41 @@
 const textBox = document.getElementById('nameSearchBox');
 const searchBtn = document.getElementById('nameSearchBtn');
-const countrySelect = document.getElementById('countrySelect');
-const nameParagraph = document.getElementById('nameValue');
-const countryParagraph = document.getElementById('nameCountry');
-const ageParagraph = document.getElementById('nameAge');
-const originParagraph = document.getElementById('nameOrigin');
-const nameGenderParagraph = document.getElementById('nameGenderOdds');
+const nameSpan = document.getElementById('nameValue');
+const countrySpan = document.getElementById('nameCountry');
+const ageSpan = document.getElementById('nameAge');
+const originSpan = document.getElementById('nameOrigin');
+const nameGenderSpan = document.getElementById('nameGenderOdds');
+const input = document.querySelector('input[name=countryText]');
 
 let textValue = '';
 let countryValue = '';
+input.addEventListener('input', (e) => {
+  countryValue = e.target.value;
+});
 
-searchBtn.addEventListener('click', async () =>{
-    textValue = textBox.value.toLowerCase();
-    countryValue = countrySelect.value;
-    const genderizeObj = await logGenderizeData(textValue, countryValue)
-    const nationalizeObj = await logNationalizeData(textValue)
-    const agifyObj = await logAgifyData(textValue, countryValue)
+searchBtn.addEventListener('click', async () => {
+  textValue = textBox.value.toLowerCase();
+  const countryCodeObj = await logCountriesData(countryValue);
+  const nationalizeObj = await logNationalizeData(textValue);
+  const agifyObj = await logAgifyData(
+    textValue,
+    countryCodeObj[0].cca2
+  );
+  const genderizeObj = await logGenderizeData(
+    textValue,
+    countryCodeObj[0].cca2
+  );
 
-    nameParagraph.textContent = nameFormatting(textValue);
-    countryParagraph.textContent = regionCodeToCountry(countryValue);
-    originParagraph.textContent = regionCodeToCountry((nationalizeObj['country'][0].country_id));
-    ageParagraph.textContent = agifyClean(agifyObj.age);
-    nameGenderParagraph.textContent = genderizeClean(genderizeObj.gender, genderizeObj.probability);
+  nameSpan.textContent = nameFormatting(textValue);
+  countrySpan.textContent = countryValue;
+  originSpan.textContent = regionCodeToCountry(
+    nationalizeObj['country'][0].country_id
+  );
+  ageSpan.textContent = agifyClean(agifyObj.age);
+  nameGenderSpan.textContent = genderizeClean(
+    genderizeObj.gender,
+    genderizeObj.probability
+  );
+  input.value = '';
+  textBox.value = '';
 });
